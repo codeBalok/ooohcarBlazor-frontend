@@ -1,6 +1,7 @@
 ﻿
 
 @page "/addusedvehicle"
+
 @using MatBlazor
 <head>
     <style>
@@ -46,9 +47,9 @@
             color: #666;
         }
 
-        .stepwizard-row {
+       /* .stepwizard-row {
             display: table-row;
-        }
+        }*/
 
         .stepwizard {
             display: table;
@@ -123,148 +124,129 @@
 <ooohCar_Blazor_Client.Shared.HomePages.MainHeader />
 <div class="contact-2 content-area-5">
     <div class="container">
+
         <h2>Add Car Details</h2>
 
-        <button class="btn btn-primary nextBtn pull-left" @onclick="ClickPrevious">Previous</button>
-        <button class="btn btn-primary nextBtn pull-right" @onclick="ClickNext">Next</button>
+        <ooohCar_Blazor_Client.Components.Wizard>
+            <ooohCar_Blazor_Client.Components.WizardStep Name="Select Make">
+              
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Select Your Car Make</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="row C7tbs">
+                            @foreach (var carlist in carImageList)
+                            {
+                                <li class="_3kV4n" @onclick="@(e => ClickCarImage(@carlist.Id))">
+                                    <div class="text-center _1X3Cw @carlist.ActiveImage"><img data-title="@carlist.Name" src="@carlist.ImagePath" alt="Maruti Suzuki" class="img-fluid _1jMfy" /></div>
+                                </li>
+                            }
 
-        <div class="stepwizard">
-            <div class="stepwizard-row setup-panel">
-                <div class="stepwizard-step col-xs-3">
-                    <a href="void:javascript()" @onclick="@(e => ClickNextNew(1))" type="button" class="btn btn-circle @buttonCss1" disabled="@stepwizard1">1</a>
-                    <p><small>Select Make</small></p>
-                </div>
-                <div class="stepwizard-step col-xs-3">
-                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(2))" class="btn btn-circle @buttonCss2" disabled="@stepwizard2">2</a>
-                    <p><small>Select Model, Varient, Color </small></p>
-                </div>
-                <div class="stepwizard-step col-xs-3">
-                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(3))" class="btn btn-circle @buttonCss3" disabled="@stepwizard3">3</a>
-                    <p><small>Select Price, Year, KM Driven </small></p>
-                </div>
-                <div class="stepwizard-step col-xs-3">
-                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(4))" class="btn btn-circle @buttonCss4" disabled="@stepwizard4">4</a>
-                    <p><small>Select Ownership, Saller Name, Contact Detail</small></p>
-                </div>
-                <div class="stepwizard-step col-xs-3">
-                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(5))" class="btn btn-circle @buttonCss5" disabled="@stepwizard5">5</a>
-                    <p><small>Upload Images</small></p>
-                </div>
-            </div>
-        </div>
+                        </ul>
+                    </div>
+               
+            </ooohCar_Blazor_Client.Components.WizardStep>
+            <ooohCar_Blazor_Client.Components.WizardStep Name="Select Model, Varient, Color">
+                
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Select Your Car Model, Varient, Color</h3>
+                    </div>
+                    <div class="panel-body">
 
-
-        <div class="panel panel-primary setup-content @step1" id="step-1">
-            <div class="panel-heading">
-                <h3 class="panel-title"> Select Your Car Make</h3>
-            </div>
-            <div class="panel-body">
-                <ul class="row C7tbs">
-                    @foreach (var carlist in carImageList)
-                    {
-                        <li class="_3kV4n" @onclick="@(e => ClickCarImage(@carlist.Id))">
-                            <div class="text-center _1X3Cw @carlist.ActiveImage"><img data-title="@carlist.Name" src="@carlist.ImagePath" alt="Maruti Suzuki" class="img-fluid _1jMfy" /></div>
-                        </li>
-                    }
-
-                </ul>
-            </div>
-        </div>
+                        <MatSelect Label="Pick a Model" @bind-Value="value1">
+                            <MatOptionString></MatOptionString>
+                            <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
+                            <MatOptionString Value="vegetables">Vegetables</MatOptionString>
+                            <MatOptionString Value="fruit">Fruit</MatOptionString>
+                        </MatSelect>
 
 
-        <div class="panel panel-primary setup-content @step2" id="step-2">
-            <div class="panel-heading">
-                <h3 class="panel-title"> Select Your Car Model, Varient, Color</h3>
-            </div>
-            <div class="panel-body">
+                        <MatSelect Label="Pick a Varient" @bind-Value="value1">
 
-                <MatSelect Label="Pick a Model" @bind-Value="value1">
-                    <MatOptionString></MatOptionString>
-                    <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
-                    <MatOptionString Value="vegetables">Vegetables</MatOptionString>
-                    <MatOptionString Value="fruit">Fruit</MatOptionString>
-                </MatSelect>
+                            <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
+                            <MatOptionString Value="vegetables">Vegetables</MatOptionString>
+                            <MatOptionString Value="fruit">Fruit</MatOptionString>
+                        </MatSelect>
 
+                        <MatSelect Label="Pick a Color" @bind-Value="value1">
 
-                <MatSelect Label="Pick a Varient" @bind-Value="value1">
+                            <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
+                            <MatOptionString Value="vegetables">Vegetables</MatOptionString>
+                            <MatOptionString Value="fruit">Fruit</MatOptionString>
+                        </MatSelect>
 
-                    <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
-                    <MatOptionString Value="vegetables">Vegetables</MatOptionString>
-                    <MatOptionString Value="fruit">Fruit</MatOptionString>
-                </MatSelect>
-
-                <MatSelect Label="Pick a Color" @bind-Value="value1">
-
-                    <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
-                    <MatOptionString Value="vegetables">Vegetables</MatOptionString>
-                    <MatOptionString Value="fruit">Fruit</MatOptionString>
-                </MatSelect>
-
-            </div>
-        </div>
-
-        <div class="panel panel-primary setup-content @step3" id="step-3">
-            <div class="panel-heading">
-                <h3 class="panel-title"> Select Price, Year, KM Driven</h3>
-            </div>
-            <div class="panel-body">
-                <MatStringField @bind-Value="@price" Label="Price"></MatStringField>
+                    </div>
+                
+            </ooohCar_Blazor_Client.Components.WizardStep>
+            <ooohCar_Blazor_Client.Components.WizardStep Name="Select Price, Year, KM Driven ">
+               
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Select Price, Year, KM Driven</h3>
+                    </div>
+                    <div class="panel-body">
+                        <MatStringField @bind-Value="@price" Label="Price"></MatStringField>
 
 
-                <MatSelect Label="Pick a Year" @bind-Value="value1">
-                    <MatOptionString></MatOptionString>
-                    <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
-                    <MatOptionString Value="vegetables">Vegetables</MatOptionString>
-                    <MatOptionString Value="fruit">Fruit</MatOptionString>
-                </MatSelect>
+                        <MatSelect Label="Pick a Year" @bind-Value="value1">
+                            <MatOptionString></MatOptionString>
+                            <MatOptionString Value="grains">Bread, Cereal, Rice, and Pasta</MatOptionString>
+                            <MatOptionString Value="vegetables">Vegetables</MatOptionString>
+                            <MatOptionString Value="fruit">Fruit</MatOptionString>
+                        </MatSelect>
 
-                <MatStringField @bind-Value="@kmDriven" Label="KM Driven"></MatStringField>
-            </div>
-        </div>
+                        <MatStringField @bind-Value="@kmDriven" Label="KM Driven"></MatStringField>
+                    </div>
+               
+            </ooohCar_Blazor_Client.Components.WizardStep>
+            <ooohCar_Blazor_Client.Components.WizardStep Name="Select Ownership, Saller Name, Contact Detail">
+                
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Select Ownership, Saller Name, Contact Detail</h3>
+                    </div>
+                    <div class="panel-body">
+                        <MatSelect Label="Pick a Ownership" @bind-Value="value1">
 
-        <div class="panel panel-primary setup-content @step4" id="step-3">
-            <div class="panel-heading">
-                <h3 class="panel-title"> Select Ownership, Saller Name, Contact Detail</h3>
-            </div>
-            <div class="panel-body">
-                <MatSelect Label="Pick a Ownership" @bind-Value="value1">
+                            <MatOptionString Value="1">First</MatOptionString>
+                            <MatOptionString Value="2">Second</MatOptionString>
+                            <MatOptionString Value="3">Third</MatOptionString>
+                            <MatOptionString Value="4">Fourth</MatOptionString>
+                            <MatOptionString Value="5">Fifth</MatOptionString>
+                        </MatSelect>
 
-                    <MatOptionString Value="1">First</MatOptionString>
-                    <MatOptionString Value="2">Second</MatOptionString>
-                    <MatOptionString Value="3">Third</MatOptionString>
-                    <MatOptionString Value="4">Fourth</MatOptionString>
-                    <MatOptionString Value="5">Fifth</MatOptionString>
-                </MatSelect>
+                        <MatStringField @bind-Value="@ContactType" Label="Contact Type"></MatStringField>
+                        <MatSelect Label="Pick a Contact Type" @bind-Value="value1">
 
-                <MatStringField @bind-Value="@ContactType" Label="Contact Type"></MatStringField>
-                <MatSelect Label="Pick a Contact Type" @bind-Value="value1">
+                            <MatOptionString Value="1">Phone</MatOptionString>
+                            <MatOptionString Value="2">Whatsapp</MatOptionString>
+                            <MatOptionString Value="3">Mail</MatOptionString>
 
-                    <MatOptionString Value="1">Phone</MatOptionString>
-                    <MatOptionString Value="2">Whatsapp</MatOptionString>
-                    <MatOptionString Value="3">Mail</MatOptionString>
-
-                </MatSelect>
-            </div>
-        </div>
-
-        <div class="panel panel-primary setup-content @step5" id="step-5">
-            <div class="panel-heading">
-                <h3 class="panel-title">Select Images</h3>
-            </div>
-            <div class="panel-body">
-                <MatFileUpload OnChange="@MultipleFilesReady" AllowMultiple="true" Label="Drop files here or Browse"></MatFileUpload>
-                @foreach (var f in multiplelist)
-                {
-                    <div>@f</div>
-                }
-            </div>
-        </div>
-
+                        </MatSelect>
+                    </div>
+               
+            </ooohCar_Blazor_Client.Components.WizardStep>
+            <ooohCar_Blazor_Client.Components.WizardStep Name="Upload Images">
+               
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Select Images</h3>
+                    </div>
+                    <div class="panel-body">
+                        <MatFileUpload OnChange="@MultipleFilesReady" AllowMultiple="true" Label="Drop files here or Browse"></MatFileUpload>
+                        @foreach (var f in multiplelist)
+                        {
+                            <div>@f</div>
+                        }
+                    </div>
+               
+            </ooohCar_Blazor_Client.Components.WizardStep>
+        </ooohCar_Blazor_Client.Components.Wizard>
 
 
 
     </div>
 </div>
+
+
+
 
 <ooohCar_Blazor_Client.Shared.HomePages.FooterOverview />
 

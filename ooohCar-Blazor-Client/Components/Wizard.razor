@@ -1,0 +1,33 @@
+﻿
+
+
+<CascadingValue Value="this">
+
+    <button class="btn btn-primary nextBtn pull-left" type="button"
+            disabled="@(ActiveStepIx == 0)" @onclick="GoBack">
+        Previous
+    </button>
+    <button class="btn btn-primary nextBtn pull-right"
+            type="@(IsLastStep ? "submit" : "button")" @onclick="GoNext">
+        @(IsLastStep ? "Submit" : "Next")
+    </button>
+    <div id="@Id" class="stepwizard">
+      
+        <div class="stepwizard-row setup-panel">
+            @{ int counter = 1;
+                @foreach (var step in Steps)
+                {
+
+<div class="stepwizard-step col-xs-3">
+    <a class="btn btn-circle @((ActiveStep == step) ? "btn-success" : "btn-default")" href="javascript: void(0)"
+       @onclick="@(e => SetActive(step))">@counter</a>
+    <p><small>@step.Name</small></p>
+</div>counter = counter + 1;
+                } }
+        </div>
+        <div id="container-fluid">
+            @ChildContent
+        </div>
+    </div>
+
+</CascadingValue>
