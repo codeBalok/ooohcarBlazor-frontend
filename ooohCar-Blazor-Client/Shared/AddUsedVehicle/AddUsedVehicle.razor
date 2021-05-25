@@ -131,23 +131,23 @@
         <div class="stepwizard">
             <div class="stepwizard-row setup-panel">
                 <div class="stepwizard-step col-xs-3">
-                    <a href="#step-1" type="button" class="btn btn-circle @buttonCss1" disabled="@stepwizard1">1</a>
+                    <a href="void:javascript()" @onclick="@(e => ClickNextNew(1))" type="button" class="btn btn-circle @buttonCss1" disabled="@stepwizard1">1</a>
                     <p><small>Select Make</small></p>
                 </div>
                 <div class="stepwizard-step col-xs-3">
-                    <a href="#step-2" type="button" class="btn btn-circle @buttonCss2" disabled="@stepwizard2">2</a>
+                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(2))" class="btn btn-circle @buttonCss2" disabled="@stepwizard2">2</a>
                     <p><small>Select Model, Varient, Color </small></p>
                 </div>
                 <div class="stepwizard-step col-xs-3">
-                    <a href="#step-3" type="button" class="btn btn-circle @buttonCss3" disabled="@stepwizard3">3</a>
+                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(3))" class="btn btn-circle @buttonCss3" disabled="@stepwizard3">3</a>
                     <p><small>Select Price, Year, KM Driven </small></p>
                 </div>
                 <div class="stepwizard-step col-xs-3">
-                    <a href="#step-4" type="button" class="btn btn-circle @buttonCss4" disabled="@stepwizard4">4</a>
+                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(4))" class="btn btn-circle @buttonCss4" disabled="@stepwizard4">4</a>
                     <p><small>Select Ownership, Saller Name, Contact Detail</small></p>
                 </div>
                 <div class="stepwizard-step col-xs-3">
-                    <a href="#step-4" type="button" class="btn btn-circle @buttonCss5" disabled="@stepwizard5">5</a>
+                    <a href="void:javascript()" type="button" @onclick="@(e => ClickNextNew(5))" class="btn btn-circle @buttonCss5" disabled="@stepwizard5">5</a>
                     <p><small>Upload Images</small></p>
                 </div>
             </div>
@@ -290,6 +290,7 @@
     string SellerName;
     string ContactType;
     List<string> multiplelist = new List<string>();
+
     private class CarImages
     {
         public int Id { get; set; }
@@ -391,6 +392,102 @@
         carImageList.Add(objNew);
     }
 
+    private void ClickNextNew(int stepid)
+    {
+        if (stepid == 1)
+        {
+            step1 = "step-block-class";
+            step2 = "step-none-class";
+            step3 = "step-none-class";
+            step4 = "step-none-class";
+            step5 = "step-none-class";
+            stepwizard1 = false;
+            stepwizard2 = true;
+            stepwizard3 = true;
+            stepwizard4 = true;
+            stepwizard5 = true;
+            buttonCss1 = "btn-success";
+            buttonCss2 = "btn-default";
+            buttonCss3 = "btn-default";
+            buttonCss4 = "btn-default";
+            buttonCss5 = "btn-default";
+        }
+        if (stepid == 2)
+        {
+            step1 = "step-none-class";
+            step2 = "step-block-class";
+            step3 = "step-none-class";
+            step4 = "step-none-class";
+            step5 = "step-none-class";
+            stepwizard1 = true;
+            stepwizard2 = false;
+            stepwizard3 = true;
+            stepwizard4 = true;
+            stepwizard5 = true;
+            buttonCss1 = "btn-default";
+            buttonCss2 = "btn-success";
+            buttonCss3 = "btn-default";
+            buttonCss4 = "btn-default";
+            buttonCss5 = "btn-default";
+        }
+
+        if (stepid == 3)
+        {
+            step1 = "step-none-class";
+            step2 = "step-none-class";
+            step3 = "step-block-class";
+            step4 = "step-none-class";
+            step5 = "step-none-class";
+            stepwizard1 = true;
+            stepwizard2 = true;
+            stepwizard3 = false;
+            stepwizard4 = true;
+            stepwizard5 = true;
+            buttonCss1 = "btn-default";
+            buttonCss2 = "btn-default";
+            buttonCss3 = "btn-success";
+            buttonCss4 = "btn-default";
+            buttonCss5 = "btn-default";
+        }
+        if (stepid == 4)
+        {
+            step1 = "step-none-class";
+            step2 = "step-none-class";
+            step3 = "step-none-class";
+            step4 = "step-block-class";
+            step5 = "step-none-class";
+            stepwizard1 = true;
+            stepwizard2 = true;
+            stepwizard3 = true;
+            stepwizard4 = false;
+            stepwizard5 = true;
+            buttonCss1 = "btn-default";
+            buttonCss2 = "btn-default";
+            buttonCss3 = "btn-default";
+            buttonCss4 = "btn-success";
+            buttonCss5 = "btn-default";
+        }
+        if (stepid == 5)
+        {
+            step1 = "step-none-class";
+            step2 = "step-none-class";
+            step3 = "step-none-class";
+            step4 = "step-none-class";
+            step5 = "step-block-class";
+            stepwizard1 = true;
+            stepwizard2 = true;
+            stepwizard3 = true;
+            stepwizard4 = true;
+            stepwizard5 = false;
+            buttonCss1 = "btn-default";
+            buttonCss2 = "btn-default";
+            buttonCss3 = "btn-default";
+            buttonCss4 = "btn-default";
+            buttonCss5 = "btn-success";
+        }
+    }
+
+
     private void ClickNext()
     {
         if (step1 == "step-block-class")
@@ -411,6 +508,7 @@
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-default";
 
+
         }
         else if (step2 == "step-block-class")
         {
@@ -429,6 +527,7 @@
             buttonCss3 = "btn-success";
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-default";
+
         }
         else if (step3 == "step-block-class")
         {
@@ -448,6 +547,7 @@
             buttonCss3 = "btn-default";
             buttonCss4 = "btn-success";
             buttonCss5 = "btn-default";
+
         }
         else if (step4 == "step-block-class")
         {
@@ -467,6 +567,7 @@
             buttonCss3 = "btn-default";
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-success";
+
         }
 
     }
@@ -490,6 +591,7 @@
             buttonCss3 = "btn-default";
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-default";
+
         }
         else if (step3 == "step-block-class")
         {
@@ -509,6 +611,7 @@
             buttonCss3 = "btn-default";
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-default";
+
         }
         else if (step4 == "step-block-class")
         {
@@ -528,6 +631,7 @@
             buttonCss3 = "btn-success";
             buttonCss4 = "btn-default";
             buttonCss5 = "btn-default";
+
         }
         else if (step5 == "step-block-class")
         {
@@ -547,6 +651,7 @@
             buttonCss3 = "btn-default";
             buttonCss4 = "btn-success";
             buttonCss5 = "btn-default";
+
         }
 
     }
